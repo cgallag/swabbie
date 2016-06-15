@@ -14,19 +14,19 @@ class TestSwabbie(unittest.TestCase):
 
     @mock.patch('swabbie.Clean.clean')
     def test_clean(self, mock_clean):
-        self.assertFalse(mock_clean.called)
+        mock_clean.return_value = 'test'
 
         result = self.runner.invoke(clean)
         self.assertEqual(result.exit_code, 0)
-        self.assertTrue(mock_clean.called)
+        self.assertEqual(result.output, 'test\n')
 
     @mock.patch('swabbie.Clean.nuke')
     def test_nuke(self, mock_nuke):
-        self.assertFalse(mock_nuke.called)
+        mock_nuke.return_value = 'test'
 
         result = self.runner.invoke(nuke)
         self.assertEqual(result.exit_code, 0)
-        self.assertTrue(mock_nuke.called)
+        self.assertEqual(result.output, 'test\n')
 
     @mock.patch('swabbie.List.get_count')
     def test_count(self, mock_count):

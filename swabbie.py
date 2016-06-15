@@ -7,11 +7,11 @@ from utils.reference import Reference
 
 @click.command()
 def nuke():
-    Clean.nuke()
+    click.echo(Clean.nuke())
 
 @click.command()
 def clean():
-    Clean.clean()
+    click.echo(Clean.clean())
 
 @click.command()
 @click.option('--all/--live', default=True)
