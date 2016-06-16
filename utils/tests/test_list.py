@@ -22,15 +22,16 @@ class TestList(unittest.TestCase):
         self.assertEqual(count, 'No count available')
 
     def test_display_list(self, mock_command_call):
-        mock_command_call.side_effect = ['obj1\nobj2', '']
+        mock_command_call.return_value = CommandResult(output='obj1\nobj2')
 
-        # If objects listed
         output = List.display_list('Test', 'test cmd')
         self.assertEqual(output, "=== Test ===\nobj1\nobj2")
 
-        # If no objects listed
+    def test_display_list_none(self, mock_command_call):
+        mock_command_call.return_value = CommandResult(output='')
+
         output = List.display_list('Test', 'test cmd2')
-        self.assertEqual(output, '0 test found')
+        self.assertEqual(output, 'No test found')
 
     @mock.patch('utils.list.List.get_count')
     def test_change_report(self, mock_count, mock_command_call):

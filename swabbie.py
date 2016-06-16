@@ -20,8 +20,8 @@ def clean():
 
 @cli.command()
 @click.option('--all/--live', default=True)
-def list(list_all):
-    if list_all:
+def list(all):
+    if all:
         click.echo(List.display_list('Images', List.Commands.ALL_IMAGE))
         click.echo(List.display_list('Containers', List.Commands.ALL_CONTAINER))
     else:

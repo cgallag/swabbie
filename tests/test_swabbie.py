@@ -48,9 +48,9 @@ class TestSwabbie(unittest.TestCase):
         result = self.runner.invoke(list)
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output, '0\n0\n')
-        mock_list.assert_any_call('Images', List.Commands.ALL_IMAGE)
-        mock_list.assert_any_call('Containers', List.Commands.ALL_CONTAINER)
-        self.assertFalse(mock_list.assert_any_call('Live Images', List.Commands.LIVE_IMAGE))
+        self.assertEqual(mock_list.call_args_list,
+                         [mock.call('Images', List.Commands.ALL_IMAGE),
+                          mock.call('Containers', List.Commands.ALL_CONTAINER)])
 
     @mock.patch('swabbie.List.display_list')
     def test_list_live(self, mock_list):
@@ -58,9 +58,9 @@ class TestSwabbie(unittest.TestCase):
         result = self.runner.invoke(list, ['--live'])
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output, '0\n0\n')
-        mock_list.assert_any_call('Live Images', List.Commands.LIVE_IMAGE)
-        mock_list.assert_any_call('Live Containers', List.Commands.LIVE_IMAGE)
-        self.assertFalse(mock_list.assert_any_call('Images', List.Commands.ALL_IMAGE))
+        self.assertEqual(mock_list.call_args_list,
+                         [mock.call('Live Images', List.Commands.LIVE_IMAGE),
+                          mock.call('Live Containers', List.Commands.LIVE_CONTAINER)])
 
     def test_ref(self):
         result = self.runner.invoke(ref)

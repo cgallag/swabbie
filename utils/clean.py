@@ -15,24 +15,20 @@ class Clean(object):
         images_change_report = List.change_report(cls.Commands.DANGLING_IMAGE, List.Commands.EXITED_IMAGE)
         containers_change_report = List.change_report(cls.Commands.EXITED_CONTAINER, List.Commands.EXITED_CONTAINER)
 
-        return cls._summary(images_change_report, 'dangling images') + cls._summary(
-            containers_change_report, 'exited containers')
+        return cls._summary(images_change_report, 'Dangling images') + cls._summary(
+            containers_change_report, 'Exited containers')
 
     @classmethod
     def nuke(cls):
         images_change_report = List.change_report(cls.Commands.ALL_IMAGE, List.Commands.ALL_IMAGE)
         containers_change_report = List.change_report(cls.Commands.ALl_CONTAINER, List.Commands.ALL_CONTAINER)
 
-        return cls._summary(images_change_report, 'images') + cls._summary(containers_change_report, 'containers')
+        return cls._summary(images_change_report, 'Images') + cls._summary(containers_change_report, 'Containers')
 
     @classmethod
     def _summary(cls, change_report, obj_name):
         if change_report.start > 0:
-            removed = '{} {} removed\n'.format(
-                change_report.changed, obj_name)
-            remaining = '{} {} remaining\n'.format(
-                change_report.end, obj_name)
-            return removed + remaining
+            return '{}\n\t{} removed\n\t{} remaining\n'.format(obj_name, change_report.changed, change_report.end)
         else:
-            return 'No {} were found.\n'.format(obj_name)
+            return 'No {} were found.\n'.format(obj_name.lower())
 

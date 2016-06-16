@@ -46,10 +46,10 @@ class List(object):
     def display_list(self, obj_name, list_cmd):
         command_output = Command.call(list_cmd, hide_output=True)
 
-        if len(command_output) == 0:
-            return '0 {} found'.format(obj_name.lower())
+        if command_output.output:
+            return '=== {} ===\n{}'.format(obj_name, command_output.output)
         else:
-            return '=== {} ===\n{}'.format(obj_name, command_output)
+            return 'No {} found'.format(obj_name.lower())
 
     @classmethod
     def change_report(cls, change_cmd, list_cmd):

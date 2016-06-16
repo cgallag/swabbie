@@ -10,9 +10,9 @@ class TestClean(unittest.TestCase):
 
     def test_summary(self):
         change_report = ChangeReport(start=2, end=1)
-        summary = Clean._summary(change_report, 'images')
+        summary = Clean._summary(change_report, 'Images')
         self.assertEqual(summary,
-                         '1 images removed\n1 images remaining\n')
+                         'Images\n\t1 removed\n\t1 remaining\n')
 
         change_report = ChangeReport(start=0, end=0)
         summary = Clean._summary(change_report, 'images')
@@ -28,8 +28,8 @@ class TestClean(unittest.TestCase):
 
         clean_report = Clean.clean()
         self.assertEqual(clean_report,
-                         '1 dangling images removed\n1 dangling images remaining\n' \
-                         '2 exited containers removed\n2 exited containers remaining\n')
+                         'Dangling images\n\t1 removed\n\t1 remaining\n' \
+                         'Exited containers\n\t2 removed\n\t2 remaining\n')
 
     @mock.patch('utils.list.List.change_report')
     def test_nuke(self, mock_change_report):
@@ -40,5 +40,5 @@ class TestClean(unittest.TestCase):
 
         nuke_report = Clean.nuke()
         self.assertEqual(nuke_report,
-                         '2 images removed\n0 images remaining\n' \
-                         '4 containers removed\n0 containers remaining\n')
+                         'Images\n\t2 removed\n\t0 remaining\n' \
+                         'Containers\n\t4 removed\n\t0 remaining\n')
