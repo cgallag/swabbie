@@ -12,4 +12,6 @@ setup(
         [console_scripts]
         swabbie=swabbie.run:cli
     ''',
+    author='Caroline Gallagher',
+    keywords=['docker', 'clean', 'nuke', 'dangling images']
 )
