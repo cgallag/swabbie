@@ -40,9 +40,12 @@ def count():
 
 @cli.command()
 @click.option('--c', type=click.Choice(['all', 'runimg', 'runcntr']), default='all')
-def ref(c):
+@click.option('--n', type=str, default='', help='Name of image or container that you want to run')
+def ref(c, n):
     if c == 'all' or c == 'runimg':
-        click.echo('Run image: {}'.format(Reference.Shell.RUN_IMAGE))
+        img_cmd = Reference.Shell.RUN_IMAGE.format(n) if n else Reference.Shell.RUN_IMAGE
+        click.echo('Run image: {}'.format(img_cmd))
 
     if c == 'all' or c == 'runcntr':
-        click.echo('Run container: {}'.format(Reference.Shell.RUN_CONTAINER))
+        container_cmd = Reference.Shell.RUN_CONTAINER.format(n) if n else Reference.Shell.RUN_CONTAINER
+        click.echo('Run container: {}'.format(container_cmd))

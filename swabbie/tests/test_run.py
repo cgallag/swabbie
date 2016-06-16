@@ -69,12 +69,28 @@ class TestSwabbie(unittest.TestCase):
                          'Run image: docker run -it {} /bin/bash\n' \
                          'Run container: docker exec -it {} bash\n')
 
+        result = self.runner.invoke(ref, ['--n', 'test'])
+        self.assertEqual(result.exit_code, 0)
+        self.assertEqual(result.output,
+                         'Run image: docker run -it test /bin/bash\n' \
+                         'Run container: docker exec -it test bash\n')
+
         result = self.runner.invoke(ref, ['--c', 'runimg'])
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output,
                          'Run image: docker run -it {} /bin/bash\n')
 
+        result = self.runner.invoke(ref, ['--c', 'runimg', '--n', 'test'])
+        self.assertEqual(result.exit_code, 0)
+        self.assertEqual(result.output,
+                         'Run image: docker run -it test /bin/bash\n')
+
         result = self.runner.invoke(ref, ['--c', 'runcntr'])
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output,
                          'Run container: docker exec -it {} bash\n')
+
+        result = self.runner.invoke(ref, ['--c', 'runcntr', '--n', 'test'])
+        self.assertEqual(result.exit_code, 0)
+        self.assertEqual(result.output,
+                         'Run container: docker exec -it test bash\n')
