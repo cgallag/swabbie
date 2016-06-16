@@ -5,15 +5,20 @@ from utils.clean import Clean
 from utils.reference import Reference
 
 
-@click.command()
+@click.group()
+@click.pass_context
+def cli(ctx):
+    pass
+
+@cli.command()
 def nuke():
     click.echo(Clean.nuke())
 
-@click.command()
+@cli.command()
 def clean():
     click.echo(Clean.clean())
 
-@click.command()
+@cli.command()
 @click.option('--all/--live', default=True)
 def list(list_all):
     if list_all:
@@ -23,7 +28,7 @@ def list(list_all):
         click.echo(List.display_list('Live Images', List.Commands.LIVE_IMAGE))
         click.echo(List.display_list('Live Containers', List.Commands.LIVE_CONTAINER))
 
-@click.command()
+@cli.command()
 def count():
     click.echo("Images\n\tNon-Dangling {}\n\tAll {}\n\n" \
              "Containers\n\tRunning {}\n\tAll {}".format(
@@ -33,7 +38,7 @@ def count():
         List.get_count(List.Commands.ALL_CONTAINER)
     ))
 
-@click.command()
+@cli.command()
 @click.option('--c', type=click.Choice(['all', 'runimg', 'runcntr']), default='all')
 def ref(c):
     if c == 'all' or c == 'runimg':
