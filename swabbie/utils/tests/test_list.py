@@ -2,11 +2,11 @@ import unittest
 
 import mock
 
-from utils.list import List, ChangeReport
-from utils.command import CommandResult
+from swabbie.utils.list import List, ChangeReport
+from swabbie.utils.command import CommandResult
 
 
-@mock.patch('utils.command.Command.call')
+@mock.patch('swabbie.utils.command.Command.call')
 class TestList(unittest.TestCase):
 
     def test_get_count(self, mock_command_call):
@@ -33,7 +33,7 @@ class TestList(unittest.TestCase):
         output = List.display_list('Test', 'test cmd2')
         self.assertEqual(output, 'No test found')
 
-    @mock.patch('utils.list.List.get_count')
+    @mock.patch('swabbie.utils.list.List.get_count')
     def test_change_report(self, mock_count, mock_command_call):
         mock_count.side_effect = [0, 2, 1]
 

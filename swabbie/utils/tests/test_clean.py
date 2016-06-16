@@ -2,8 +2,8 @@ import unittest
 
 import mock
 
-from utils.clean import Clean
-from utils.list import ChangeReport
+from swabbie.utils.clean import Clean
+from swabbie.utils.list import ChangeReport
 
 
 class TestClean(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestClean(unittest.TestCase):
         self.assertEqual(summary,
                          'No images were found.\n')
 
-    @mock.patch('utils.list.List.change_report')
+    @mock.patch('swabbie.utils.list.List.change_report')
     def test_clean(self, mock_change_report):
         mock_change_report.side_effect = [
             ChangeReport(2, 1),
@@ -31,7 +31,7 @@ class TestClean(unittest.TestCase):
                          'Dangling images\n\t1 removed\n\t1 remaining\n' \
                          'Exited containers\n\t2 removed\n\t2 remaining\n')
 
-    @mock.patch('utils.list.List.change_report')
+    @mock.patch('swabbie.utils.list.List.change_report')
     def test_nuke(self, mock_change_report):
         mock_change_report.side_effect = [
             ChangeReport(2, 0),

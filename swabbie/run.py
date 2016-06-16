@@ -1,8 +1,8 @@
 import click
 
-from utils.list import List
-from utils.clean import Clean
-from utils.reference import Reference
+from swabbie.utils.list import List
+from swabbie.utils.clean import Clean
+from swabbie.utils.reference import Reference
 
 
 @click.group()

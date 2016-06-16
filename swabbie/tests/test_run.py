@@ -3,8 +3,8 @@ import unittest
 import mock
 from click.testing import CliRunner
 
-from swabbie import clean, count, nuke, list, ref
-from utils.list import List
+from swabbie.run import clean, count, nuke, list, ref
+from swabbie.utils.list import List
 
 
 class TestSwabbie(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestSwabbie(unittest.TestCase):
     def setUp(self):
         self.runner = CliRunner()
 
-    @mock.patch('swabbie.Clean.clean')
+    @mock.patch('swabbie.run.Clean.clean')
     def test_clean(self, mock_clean):
         mock_clean.return_value = 'test'
 
@@ -20,7 +20,7 @@ class TestSwabbie(unittest.TestCase):
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output, 'test\n')
 
-    @mock.patch('swabbie.Clean.nuke')
+    @mock.patch('swabbie.run.Clean.nuke')
     def test_nuke(self, mock_nuke):
         mock_nuke.return_value = 'test'
 
@@ -28,7 +28,7 @@ class TestSwabbie(unittest.TestCase):
         self.assertEqual(result.exit_code, 0)
         self.assertEqual(result.output, 'test\n')
 
-    @mock.patch('swabbie.List.get_count')
+    @mock.patch('swabbie.run.List.get_count')
     def test_count(self, mock_count):
         mock_count.side_effect = [1, 2, 3, 4]
 
@@ -42,7 +42,7 @@ class TestSwabbie(unittest.TestCase):
         mock_count.assert_any_call(List.Commands.LIVE_CONTAINER)
         mock_count.assert_any_call(List.Commands.ALL_CONTAINER)
 
-    @mock.patch('swabbie.List.display_list')
+    @mock.patch('swabbie.run.List.display_list')
     def test_list_all(self, mock_list):
         mock_list.side_effect = [0, 0]
         result = self.runner.invoke(list)
@@ -52,7 +52,7 @@ class TestSwabbie(unittest.TestCase):
                          [mock.call('Images', List.Commands.ALL_IMAGE),
                           mock.call('Containers', List.Commands.ALL_CONTAINER)])
 
-    @mock.patch('swabbie.List.display_list')
+    @mock.patch('swabbie.run.List.display_list')
     def test_list_live(self, mock_list):
         mock_list.side_effect = [0, 0]
         result = self.runner.invoke(list, ['--live'])

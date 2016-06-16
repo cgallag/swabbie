@@ -6,13 +6,13 @@ from click.testing import CliRunner
 from testfixtures import Replacer
 from testfixtures.popen import MockPopen
 
-from utils.command import Command, CommandResult
+from swabbie.utils.command import Command, CommandResult
 
 
 class CommandsTest(unittest.TestCase):
 
-    @mock.patch('utils.command.Command._dollar_split')
-    @mock.patch('utils.command.Command._call_cmd')
+    @mock.patch('swabbie.utils.command.Command._dollar_split')
+    @mock.patch('swabbie.utils.command.Command._call_cmd')
     def test_call(self, mock_call, mock_split):
         Command.call('cmd1$cmd2')
         mock_split.assert_called_with('cmd1$cmd2')
@@ -20,7 +20,7 @@ class CommandsTest(unittest.TestCase):
         Command.call('cmd1')
         mock_call.assert_called_with('cmd1')
 
-    @mock.patch('utils.command.Command.call')
+    @mock.patch('swabbie.utils.command.Command.call')
     @mock.patch('click.echo')
     def test_dollar_split(self, mock_echo, mock_call):
         mock_call.side_effect = [
@@ -55,7 +55,7 @@ class PopenCommandsTest(unittest.TestCase):
     def setUp(self):
         self.Popen = MockPopen()
         self.r = Replacer()
-        self.r.replace('utils.command.subprocess.Popen', self.Popen)
+        self.r.replace('swabbie.utils.command.subprocess.Popen', self.Popen)
         self.addCleanup(self.r.restore)
 
     def test_call_cmd(self):
