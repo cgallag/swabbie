@@ -21,8 +21,6 @@ create a virtualenv, and run
     
 on the command line from inside the main swabbie folder.
 
-In the future, I will add this package to the pypi server.
-
 
 ## Usage
 
