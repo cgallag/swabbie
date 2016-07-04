@@ -23,6 +23,8 @@ class ChangeReport(object):
 class List(object):
 
     class Commands:
+        # Docker images: lists images given specified attributes
+        # Docker ps: lists containers
         LIVE_IMAGE = 'docker images -f "dangling=false"'
         LIVE_CONTAINER = 'docker ps'
 

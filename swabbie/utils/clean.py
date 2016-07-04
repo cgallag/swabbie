@@ -4,11 +4,14 @@ from list import List
 class Clean(object):
 
     class Commands:
-        EXITED_CONTAINER = 'docker rm $(docker ps -q -f status=exited)'
-        DANGLING_IMAGE = 'docker rmi -f $(docker images -f "dangling=true" -q)'
+        # Docker rm: removes containers
+        # Docker rmi: removes images
+        # Using listing commmands from List file, with -q to only show ids
+        EXITED_CONTAINER = 'docker rm $({} -q)'.format(List.Commands.EXITED_CONTAINER)
+        DANGLING_IMAGE = 'docker rmi -f $({} -q)'.format(List.Commands.EXITED_IMAGE)
 
-        ALl_CONTAINER = 'docker rm -f $(docker ps -aq)'
-        ALL_IMAGE = 'docker rmi -f $(docker images -q)'
+        ALl_CONTAINER = 'docker rm -f $({} -q)'.format(List.Commands.ALL_CONTAINER)
+        ALL_IMAGE = 'docker rmi -f $({} -q)'.format(List.Commands.ALL_IMAGE)
 
     @classmethod
     def clean(cls):
