@@ -16,7 +16,7 @@ def read(*parts):
 
 setup(
     name='swabbie',
-    version='0.1.3',
+    version='0.1.4',
     packages=find_packages(),
     description='Helps manage your docker environment',
     url='https://github.com/cgallag/swabbie',
