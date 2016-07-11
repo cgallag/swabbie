@@ -19,6 +19,7 @@ setup(
     version='0.1.3',
     packages=find_packages(),
     description='Helps manage your docker environment',
+    url='https://github.com/cgallag/swabbie',
     include_package_data=True,
     install_requires=[
         'Click',
@@ -28,6 +29,7 @@ setup(
         swabbie=swabbie.run:cli
     ''',
     author='Caroline Gallagher',
+    author_email='caroline@rokoid.com',
     keywords=['docker', 'clean', 'nuke', 'dangling images'],
     long_description=read("README.rst"),
     license='MIT',
