@@ -47,13 +47,22 @@ from the main folder.
 
 ### Testing
 
-Swabbie uses nosetests for unit testing, so run `nosetests` from the
-main folder.
+Swabbie uses [nose](https://github.com/nose-devs/nose) for unit testing, 
+so run `nosetests` from the main folder to execute the test suite.
 
 To install dependencies for running the tests, use 
 
     pip install -r requirements-test.txt
     
+### Versioning
+
+Swabbie uses the [bumpversion](https://github.com/peritus/bumpversion) 
+package for versioning. The bumpversion.cfg file contains the necessary
+information for updating the version, so just run 
+
+    bumpversion <major/minor/patch>
+    
+and bumpversion will do the rest.
     
 ## License 
 
