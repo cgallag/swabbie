@@ -3,7 +3,8 @@
 
 ## About
 
-Swabbie is a command-line utility designed to help you manage your docker images and containers. 
+Swabbie is a command-line utility designed to help you manage your [docker](https://www.docker.com/) 
+images and containers. 
 
 Swabbie can clean up your containers and images, restore docker to a fresh install,
 and keep track of containers and images more efficiently.
@@ -63,6 +64,13 @@ information for updating the version, so just run
     bumpversion <major/minor/patch>
     
 and bumpversion will do the rest.
+
+### Updating README
+
+The readme is provided in both markdown and rst. One approach is to 
+write the readme in markdown, and then use pandoc to convert to rst:
+
+    pandoc --from=markdown --to=rst --output=README.rst README.md
     
 ## License 
 

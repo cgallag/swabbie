@@ -5,7 +5,7 @@ About
 -----
 
 Swabbie is a command-line utility designed to help you manage your
-docker images and containers.
+`docker <https://www.docker.com/>`__ images and containers.
 
 Swabbie can clean up your containers and images, restore docker to a
 fresh install, and keep track of containers and images more efficiently.
@@ -62,14 +62,39 @@ from the main folder.
 Testing
 ~~~~~~~
 
-Swabbie uses nosetests for unit testing, so run ``nosetests`` from the
-main folder.
+Swabbie uses `nose <https://github.com/nose-devs/nose>`__ for unit
+testing, so run ``nosetests`` from the main folder to execute the test
+suite.
 
 To install dependencies for running the tests, use
 
 ::
 
     pip install -r requirements-test.txt
+
+Versioning
+~~~~~~~~~~
+
+Swabbie uses the
+`bumpversion <https://github.com/peritus/bumpversion>`__ package for
+versioning. The bumpversion.cfg file contains the necessary information
+for updating the version, so just run
+
+::
+
+    bumpversion <major/minor/patch>
+
+and bumpversion will do the rest.
+
+Updating README
+~~~~~~~~~~~~~~~
+
+The readme is provided in both markdown and rst. One approach is to
+write the readme in markdown, and then use pandoc to convert to rst:
+
+::
+
+    pandoc --from=markdown --to=rst --output=README.rst README.md
 
 License
 -------
