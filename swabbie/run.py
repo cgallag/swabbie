@@ -6,6 +6,7 @@ from swabbie.utils.reference import Reference
 
 
 @click.group()
+@click.version_option()
 @click.pass_context
 def cli(ctx):
     pass
