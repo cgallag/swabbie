@@ -7,16 +7,18 @@ About
 Swabbie is a command-line utility designed to help you manage your
 `docker <https://www.docker.com/>`__ images and containers.
 
-Swabbie can clean up your containers and images, restore docker to a
-fresh install, and keep track of containers and images more efficiently.
+Swabbie can clean up your dangling containers and images, restore docker
+to a fresh install, and keep track of containers and images more
+efficiently.
 
 By using swabbie, you remove the need for shell scripts and bash aliases
-for all the docker image and container management commands.
+to manage docker images and containers. Let swabbie keep track of those
+commands for you!
 
 Installation
 ------------
 
-Currently to install swabbie as a package, download swabbie by cloning
+Currently, to install swabbie as a package, download swabbie by cloning
 this repo, create a virtualenv, and run
 
 ::
